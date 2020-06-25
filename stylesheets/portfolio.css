@@ -17,13 +17,15 @@ article, aside, details, figcaption, figure, footer, header, menu, nav, section,
 }
 
 * {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
+:root {
+  --timeline-disco: linear-gradient(0deg, #833ab4 0%, #fd1d1d 25%, #fcb045 75% , #833ab4 100%);
+}
+
 html {
-  font-family: "Roboto", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-family: "Open Sans", "Ubuntu", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   font-weight: 400;
   font-size: 16px;
   background: #222;
@@ -37,8 +39,10 @@ a, a:visited {
 }
 a:hover, a:visited:hover {
   color: #ddd;
+  text-decoration: underline;
 }
 h1 {
+  font-weight: 600;
   font-size: 2rem;
 }
 h2 {
@@ -46,55 +50,50 @@ h2 {
   line-height: 1.75rem;
   margin-bottom: .5rem;
 }
-body {
+h2 a {
+  text-decoration: none;
 }
 .Header {
   padding: .5rem 1rem;
   background: #222;
 }
 .Project {
-  display: -webkit-box;
-  display: -moz-box;
-  display: box;
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flexbox;
   display: flex;
   margin-left: 8rem;
   padding: 2rem 2rem 2rem 2rem;
-  border-left: 4px solid #4fd670;
+  border-left: 4px solid var(--timeline-disco);
   position: relative;
+}
+.Project::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  left: -2px;
+  top: 0;
+  bottom: 0;
+  background: var(--timeline-disco);
 }
 .Project-pip {
   position: absolute;
-  left: -.875rem;
-  top: 2rem;
-  width: 1.5rem;
-  height: 1.5rem;
-  background: #4fd670;
+  left: -.5rem;
+  top: 2.5rem;
+  width: 1rem;
+  height: 1rem;
+  background: #fff;
   border-radius: 1rem;
+  z-index: 1;
 }
 .Project-month {
   width: 6rem;
   margin-right: 1.5rem;
-  line-height: 1.5rem;
+  line-height: 2rem;
 }
 .Project-contents {
   flex: 1 auto;
   line-height: 1.5rem;
 }
 .Project-thumbnails {
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  box-flex: 1;
-  -webkit-flex: 1 0 auto;
-  -moz-flex: 1 0 auto;
-  -ms-flex: 1 0 auto;
   flex: 1 0 auto;
-
-  -webkit-flex-wrap: wrap;
-  -moz-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 .Project-thumbnail {
@@ -109,6 +108,7 @@ body {
   margin: 1rem 0;
 }
 .DateAnchor {
+  line-height: 2rem;
   width: 8rem;
   float: left;
   text-align: center;
@@ -116,22 +116,31 @@ body {
   margin-top: 2rem;
 }
 @media screen and (max-width: 768px) {
+  p {
+    line-height: 2;
+  }
   .Project {
     margin-left: 1rem;
-    -webkit-flex-direction: column;
-    -moz-flex-direction: column;
     flex-direction: column;
-    -ms-flex-direction: column;
   }
   .Project-month {
     width: 100%;
     font-size: 1.5rem;
+    font-weight: 700;
     margin-bottom: .5rem;
   }
   .DateAnchor {
     width: 0;
-    margin-top: 0;
+    margin-top: 2rem;
     position: relative;
-    left: 2rem;
+    left: 3rem;
+    font-size: 3rem;
+    font-weight: 700;
+  }
+  .DateAnchor + .Project {
+    padding-top: 6rem;
+  }
+  .DateAnchor + .Project .Project-pip {
+    top: 6.5rem;
   }
 }
